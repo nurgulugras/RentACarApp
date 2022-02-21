@@ -1,0 +1,9 @@
+.form-control.ng-touched.ng-invalid {
+    /* forma dokunmus ama kurallara uymamis */
+    border-left: 5px solid #a94442;
+}
+
+.form-control.ng-dirty.ng-valid {
+    /* degisiklik yapmis ve kurralara uygun */
+    border-left: 5px solid #42A948;
+}

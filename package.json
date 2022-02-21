@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "breadcrumb": "^1.0.0",
+    "pp-breadcrumbs": "^2.0.0"
+  }
+}

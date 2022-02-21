@@ -1,0 +1,20 @@
+<nrg-card>
+    <nrg-card-body>
+        <div>
+            <div class="d-flex flex-row bd-highlight mb-3">
+                <div class="p-2 bd-highlight ">Brand: {{car.brand}}</div>
+                <div class="p-2 bd-highlight ">Model: {{car.model}}</div>
+                <div class="p-2 bd-highlight ">Model Year: {{car.modelYear}}</div>
+                <div class="p-2 bd-highlight ">Licence Type:{{car.licenceType}}</div>
+                <div class="p-2 bd-highlight ">Price: {{car.price}}</div>
+            </div>
+            <div class="p-2">Are you sure you want to Delete?</div>
+            <div class="d-flex flex-row-reverse">
+                <button (click)="deleteCar()" type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+
+
+    </nrg-card-body>
+
+</nrg-card>

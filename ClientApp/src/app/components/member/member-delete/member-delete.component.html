@@ -1,0 +1,20 @@
+<nrg-card>
+    <nrg-card-body>
+        <div>
+            <div class="d-flex flex-row bd-highlight mb-3">
+                <div class="p-2 bd-highlight ">Name: {{member.name}}</div>
+                <div class="p-2 bd-highlight ">Email: {{member.email}}</div>
+                <div class="p-2 bd-highlight ">Model Year: {{member.role}}</div>
+                <div class="p-2 bd-highlight ">Licence Type:{{member.licenceType}}</div>
+                <div class="p-2 bd-highlight ">Price: {{member.gender}}</div>
+            </div>
+            <div class="p-2">Are you sure you want to Delete?</div>
+            <div class="d-flex flex-row-reverse">
+                <button (click)="deleteMember()" type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+
+
+    </nrg-card-body>
+
+</nrg-card>

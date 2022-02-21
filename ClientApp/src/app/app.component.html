@@ -1,0 +1,25 @@
+<div class="d-flex flex-column">
+    <app-navbar></app-navbar>
+
+    <div class="container-fluid h-100">
+
+        <div class="d-flex h-100 ">
+            <div>
+                <app-sidebar></app-sidebar>
+            </div>
+            <div class="w-100 h-100" style="background-color: #dee2e6 ">
+                <div class="container-fluid w-100 ">
+                    <div class="row breadcrumb-container w-100 m-0 ">
+                        <nrg-breadcrumb></nrg-breadcrumb>
+                    </div>
+                    <div class="row p-6 ">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer mt-auto py-5 bg-light">
+    <app-footer></app-footer>
+</footer>
