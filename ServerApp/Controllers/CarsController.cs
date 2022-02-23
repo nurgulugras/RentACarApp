@@ -43,7 +43,7 @@ namespace ServerApp.Controllers
             var car=await _carService.SaveCarAsync(model);
             var result = _mapper.Map<CarForDTO>(car);
             return Ok(result);
-
+//kkj
         }
 
         [HttpPut("{id}")]
