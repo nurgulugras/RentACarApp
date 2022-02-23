@@ -156,14 +156,8 @@ namespace ServerApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("BrandName")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("CarId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("CustomerName")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Images")
                         .HasColumnType("TEXT");
@@ -177,12 +171,18 @@ namespace ServerApp.Migrations
                     b.Property<DateTime>("RentEndDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("isActive")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CarId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("Rentals");
@@ -378,6 +378,12 @@ namespace ServerApp.Migrations
                     b.HasOne("ServerApp.Models.Entities.Car", "Car")
                         .WithOne("Rental")
                         .HasForeignKey("ServerApp.Models.Entities.Rental", "CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ServerApp.Models.User", "User")
+                        .WithOne("Rental")
+                        .HasForeignKey("ServerApp.Models.Entities.Rental", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -9,41 +9,14 @@ using ServerApp.Data;
 namespace ServerApp.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220203065602_AddRoleData")]
-    partial class AddRoleData
+    [Migration("20220221112154_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.1");
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedName")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("IdentityRole");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "e357cdbf-27c3-443e-8f8f-62083fd91fed",
-                            ConcurrencyStamp = "763ee6c2-a581-4af5-91aa-cc4abc3fe43b",
-                            Name = "customer"
-                        });
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
@@ -142,6 +115,79 @@ namespace ServerApp.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("ServerApp.Models.Entities.Car", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Brand")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsSafeDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("LicenceType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Model")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ModelYear")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("ServerApp.Models.Entities.Rental", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Images")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsSafeDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("RentDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("RentEndDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Rentals");
                 });
 
             modelBuilder.Entity("ServerApp.Models.Role", b =>
@@ -253,6 +299,9 @@ namespace ServerApp.Migrations
                     b.Property<string>("Phone_No")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
 
@@ -322,6 +371,21 @@ namespace ServerApp.Migrations
                     b.HasOne("ServerApp.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ServerApp.Models.Entities.Rental", b =>
+                {
+                    b.HasOne("ServerApp.Models.Entities.Car", "Car")
+                        .WithOne("Rental")
+                        .HasForeignKey("ServerApp.Models.Entities.Rental", "CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ServerApp.Models.User", "User")
+                        .WithOne("Rental")
+                        .HasForeignKey("ServerApp.Models.Entities.Rental", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

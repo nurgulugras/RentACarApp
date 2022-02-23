@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Identity;
+using ServerApp.Models.Entities;
 using ServerApp.Models.Enums;
 
 namespace ServerApp.Models
@@ -20,5 +21,6 @@ namespace ServerApp.Models
         public Boolean IsSafeDeleted { get; set; }
         public Boolean IsActive { get ; set; } 
         public RoleEnum Role { get ; set; } 
+        public Rental Rental {get; set;}
     }
 }
