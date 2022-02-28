@@ -42,6 +42,7 @@ namespace ServerApp
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICarService,CarService>();
+            services.AddScoped<IRentalService,RentalService>();
             services.AddScoped(typeof(IRepository<>),typeof(EFRepository<>));
             services.Configure<IdentityOptions>(options=> {
 

@@ -21,12 +21,17 @@ namespace ServerApp.Data
             return await _context.Set<T>().FirstOrDefaultAsync(i=>i.Id == id);
         }
 
-        public Task<List<T>> GetsAsync(Expression<Func<T, bool>> predicate = null)
+        public Task<List<T>> GetsAsync(Expression<Func<T, bool>> predicate)
         {
             return predicate==null?_context.Set<T>().ToListAsync() : _context.Set<T>().Where(predicate).ToListAsync();
            
         }
 
+        public async Task<IQueryable<T>> GetsAsync2(Expression<Func<T, bool>> predicate)
+        {
+            return  predicate==null ? (await _context.Set<T>().ToListAsync()).AsQueryable() : _context.Set<T>().Where(predicate).AsQueryable();
+           
+        }
         private async Task<bool> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync()>0;

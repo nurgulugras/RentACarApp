@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ServerApp.Models;
 using ServerApp.Models.Entities;
 using ServerApp.Services.Abstract;
@@ -21,9 +23,14 @@ namespace ServerApp.Services.Concrete
             await _rentalRepository.UpdateAsync(dbRent);
         }
 
-        public Task<List<Rental>> GetRentalsAsync()
+        public async Task<List<Rental>> GetRentalsAsync()
         {
-            return _rentalRepository.GetsAsync(x=>x.IsSafeDeleted==false);
+           var query = await _rentalRepository.GetsAsync2(x=>x.IsSafeDeleted==false);
+
+           query.Include(x=> x.Car);
+           query.Include(x=> x.User);
+
+           return query.ToList();
         }
 
         public Task<Rental> SaveRentalAsync(Rental rental)

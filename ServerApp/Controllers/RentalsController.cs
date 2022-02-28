@@ -9,7 +9,7 @@ using ServerApp.Services.Abstract;
 
 namespace ServerApp.Controllers
 {
-    [AuthorizeRoles]
+    
     [Route("api/[controller]")]
     [ApiController]
     public class RentalsController:ControllerBase
