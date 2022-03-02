@@ -37,7 +37,7 @@ namespace ServerApp.Services.Concrete
             await _carRepository.UpdateAsync(dbCar);
         }
         public Task<Car> SaveCarAsync(Car car)
-        {
+        {   car.IsActive=true;
             return _carRepository.SaveAsync(car);
         }
         public async Task<List<Car>> GetActivesUsersAsync()

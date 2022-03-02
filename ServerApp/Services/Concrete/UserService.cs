@@ -39,6 +39,7 @@ namespace ServerApp.Services
         }
         public Task<User> SaveUserAsync(User user)
         {
+           user.IsActive=true;
            return _userRepository.SaveAsync(user);
         }
         public async Task<List<User>> GetActivesUsersAsync()

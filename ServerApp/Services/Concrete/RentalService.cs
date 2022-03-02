@@ -35,6 +35,7 @@ namespace ServerApp.Services.Concrete
 
         public Task<Rental> SaveRentalAsync(Rental rental)
         {
+            rental.isActive=true;
            return _rentalRepository.SaveAsync(rental);
         }
 

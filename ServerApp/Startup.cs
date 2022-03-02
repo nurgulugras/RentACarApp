@@ -60,7 +60,9 @@ namespace ServerApp
                options.User.RequireUniqueEmail = true; 
             });
             services.AddAutoMapper(typeof(Startup));
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers().AddNewtonsoftJson(options =>{
+                options.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
             services.AddCors(options => {
                 options.AddPolicy(
                     name: MyAllowOrigins,

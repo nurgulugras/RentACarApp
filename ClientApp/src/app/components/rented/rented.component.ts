@@ -29,7 +29,6 @@ export class RentedComponent implements OnInit {
     this.onChangedRentStated(); 
   }
   showModal(rent:Rental){
-    
     this.rentFormModalShow=true;
     this.selectedRent=rent;
     console.log(this.selectedRent.id);
